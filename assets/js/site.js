@@ -45,13 +45,18 @@ const NAV = [
       { label: "Выездные и уличные мероприятия", href: "vyezdnye.html" },
   ]},
   { label: "Творческий лагерь «ЗВЕЗДА»", href: "zvezda.html" },
-  { label: "Наши коллективы", href: "https://dk.mosreg.ru/dk/istok/workshops" },
+  { label: "Наши коллективы", href: "kollektivy.html", children: [
+      { label: "Каталог кружков и студий", href: "kollektivy.html" },
+      { label: "Правила приёма", href: "pravila-priema.html" },
+      { label: "Электронная запись", href: "https://dk.mosreg.ru/dk/istok/workshops" },
+  ]},
   { label: "Фоторепортаж", href: "fotoreportazh.html" },
   { label: "Участие в конкурсах и фестивалях", href: "konkursy.html" },
   { label: "Большой зал", href: "bolshoj-zal.html" },
   { label: "Малый зал", href: "malyj-zal.html" },
   { label: "Контакты", href: "kontakty.html", children: [
       { label: "О Нас", href: "o-nas.html", children: [
+          { label: "История", href: "istoriya.html" },
           { label: "Награды", href: "nagrady.html" },
           { label: "Пресса о нас", href: "http://ia-fryaz.mosoblonline.ru/" },
           { label: "Спонсорам", href: "sponsoram.html" },
@@ -65,6 +70,7 @@ const NAV = [
   { label: "Платные услуги", href: "platnye-uslugi.html" },
   { label: "Документы", href: "dokumenty.html", children: [
       { label: "Документы для зачисления в клубные формирования", href: "dokumenty-zachislenie.html" },
+      { label: "Правила приёма в кружки", href: "pravila-priema.html" },
       { label: "Противодействие коррупции", href: "korrupcia.html" },
   ]},
 ];

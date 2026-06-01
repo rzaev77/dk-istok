@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#14101b"/>
+  <rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="#a5854c" stroke-width="1.5"/>
+  <text x="32" y="41" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#f0d79d" text-anchor="middle">ДК</text>
+</svg>
