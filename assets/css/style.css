@@ -85,6 +85,8 @@ body::before {
   box-shadow: inset 0 0 220px rgba(0,0,0,.55);
 }
 body > * { position: relative; z-index: 1; }
+/* шапка (и мобильное выезжающее меню внутри неё) — выше контента, иначе main перекрывает меню */
+#site-header-root { position: relative; z-index: 120; }
 
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
@@ -489,6 +491,10 @@ strong { color: var(--white); font-weight: 600; }
 @media (max-width: 960px) {
   .burger { display: block; }
   .navbar { background: none; border: none; }
+  /* затемнённая подложка за выезжающим меню */
+  .nav-backdrop { position: fixed; inset: 0; background: rgba(8,7,10,.6); backdrop-filter: blur(2px);
+    opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s var(--ease); z-index: 150; }
+  .nav-backdrop.open { opacity: 1; visibility: visible; }
   .mainnav {
     display: block; padding: 0; max-width: none;
     position: fixed; top: 0; right: 0; width: min(88vw, 380px); height: 100dvh;

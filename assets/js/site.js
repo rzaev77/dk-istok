@@ -152,7 +152,8 @@ function renderHeader() {
   </header>
   <div class="navbar">
     <nav class="mainnav" id="mainnav">${buildMenu(NAV)}</nav>
-  </div>`;
+  </div>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>`;
 }
 
 /* --- Подвал --- */
@@ -222,13 +223,24 @@ function mountChrome() {
 
   const burger = document.getElementById("burger");
   const nav = document.getElementById("mainnav");
+  const backdrop = document.getElementById("nav-backdrop");
   if (burger && nav) {
-    burger.addEventListener("click", () => {
-      const open = nav.classList.toggle("open");
+    const setMenu = (open) => {
+      nav.classList.toggle("open", open);
       burger.classList.toggle("active", open);
+      if (backdrop) backdrop.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
       document.body.style.overflow = open ? "hidden" : "";
+    };
+    burger.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+    backdrop && backdrop.addEventListener("click", () => setMenu(false));
+    // тап по обычной ссылке (без подменю) — закрыть меню
+    nav.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (!a.parentElement.classList.contains("has-children")) setMenu(false);
+      });
     });
+    // тап по пункту с подменю на мобильных раскрывает его
     nav.querySelectorAll(".has-children > a").forEach(a => {
       a.addEventListener("click", (e) => {
         if (window.innerWidth <= 960) {
