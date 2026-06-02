@@ -205,10 +205,16 @@ function initReveal() {
   const els = document.querySelectorAll("[data-reveal]");
   if (!els.length) return;
   if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("is-in")); return; }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  // threshold:0 — срабатывает при любом пересечении (важно для высоких блоков:
+  // у блока выше вьюпорта доля видимости < 12% и порог 0.12 не достигался никогда)
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); obs.unobserve(e.target); } });
+  }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
   els.forEach(e => io.observe(e));
+  // страховка: всё, что уже в зоне видимости, показываем гарантированно
+  setTimeout(() => els.forEach(e => {
+    if (!e.classList.contains("is-in") && e.getBoundingClientRect().top < window.innerHeight * 0.95) e.classList.add("is-in");
+  }), 450);
 }
 
 /* --- Общая инициализация --- */
