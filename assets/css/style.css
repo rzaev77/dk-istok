@@ -193,14 +193,17 @@ strong { color: var(--white); font-weight: 600; }
 .mainnav ul ul {
   position: absolute; top: 100%; left: 0; min-width: 268px;
   background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 14px;
-  list-style: none; margin: 4px 0 0; padding: 10px;
+  list-style: none; margin: 0; padding: 10px;
   box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(10px);
   transition: opacity .25s var(--ease), transform .25s var(--ease); z-index: 50;
 }
-.mainnav li:hover > ul { opacity: 1; visibility: visible; transform: translateY(0); }
+/* прозрачный «мост» закрывает зазор — подменю не закрывается при движении мыши к нему */
+.mainnav ul ul::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; }
+.mainnav li:hover > ul, .mainnav li:focus-within > ul { opacity: 1; visibility: visible; transform: translateY(0); }
 .mainnav ul ul li a { padding: 11px 13px; font-size: .85rem; white-space: normal; border-radius: 8px; color: var(--text-2); }
 .mainnav ul ul li a:hover { background: var(--bg-4); color: var(--gold-bright); }
-.mainnav ul ul ul { top: 0; right: 100%; left: auto; margin: 0 6px 0 0; }
+.mainnav ul ul ul { top: 0; right: 100%; left: auto; margin: 0; }
+.mainnav ul ul ul::before { left: auto; right: -12px; top: 0; bottom: 0; width: 12px; height: auto; }
 
 /* бургер */
 .burger { display: none; margin-left: auto; width: 48px; height: 42px; background: transparent;
@@ -534,6 +537,7 @@ strong { color: var(--white); font-weight: 600; }
   }
   .mainnav li.expanded > ul { max-height: 640px; padding: 6px 8px; }
   .mainnav ul ul ul { left: auto; margin-left: 14px; }
+  .mainnav ul ul::before, .mainnav ul ul ul::before { display: none; }
   .slide::after { background: linear-gradient(0deg, rgba(8,7,10,.96) 8%, rgba(8,7,10,.4) 100%); }
   .slide__title { max-width: 100%; }
   .site-footer__grid { grid-template-columns: 1fr; gap: 36px; }
