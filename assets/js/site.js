@@ -257,8 +257,9 @@ function initSlider() {
   const slider = document.querySelector("[data-slider]");
   if (!slider) return;
   const slides = Array.from(slider.querySelectorAll(".slide"));
+  if (slides.length < 2) return;
   const dotsWrap = slider.querySelector(".slider__dots");
-  let idx = 0, timer;
+  let idx = 0, timer = null, paused = false;
 
   slides.forEach((_, i) => {
     const d = document.createElement("button");
@@ -270,22 +271,33 @@ function initSlider() {
   const dots = dotsWrap ? Array.from(dotsWrap.children) : [];
 
   function go(n) {
+    // защита: используем реально активный слайд (на случай рассинхрона после возврата из кэша)
+    const cur = slides.findIndex(s => s.classList.contains("active"));
+    if (cur >= 0) idx = cur;
     slides[idx].classList.remove("active");
     dots[idx] && dots[idx].classList.remove("active");
     idx = (n + slides.length) % slides.length;
     slides[idx].classList.add("active");
     dots[idx] && dots[idx].classList.add("active");
-    restart();
+    play();
   }
-  function restart() { clearInterval(timer); timer = setInterval(() => go(idx + 1), 6500); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function play() { stop(); if (!paused && !document.hidden) timer = setInterval(() => go(idx + 1), 6500); }
 
   const prev = slider.querySelector(".slider__prev");
   const next = slider.querySelector(".slider__next");
   prev && prev.addEventListener("click", () => go(idx - 1));
   next && next.addEventListener("click", () => go(idx + 1));
-  slider.addEventListener("mouseenter", () => clearInterval(timer));
-  slider.addEventListener("mouseleave", restart);
-  restart();
+  slider.addEventListener("mouseenter", () => { paused = true; stop(); });
+  slider.addEventListener("mouseleave", () => { paused = false; play(); });
+
+  // надёжное возобновление: возврат из bfcache, переключение вкладок, фокус окна
+  document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); else play(); });
+  window.addEventListener("pageshow", () => { paused = false; play(); });
+  window.addEventListener("pagehide", stop);
+  window.addEventListener("focus", () => { if (!paused) play(); });
+
+  play();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
