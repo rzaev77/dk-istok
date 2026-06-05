@@ -29,6 +29,10 @@ const ICONS = {
   chevR:    '<path d="m10 6 6 6-6 6"/>',
   star:     '<path d="M12 3.5 14.6 9l6 .8-4.4 4.2 1.1 6L12 17.2 6.7 20l1.1-6L3.4 9.8l6-.8z"/>',
   masks:    '<path d="M4 5h7v6a3.5 3.5 0 0 1-7 0z"/><path d="M7 9h.01M9 9h.01M6.5 12s.7 1 1.5 1 1.5-1 1.5-1"/><path d="M13 8h7v5a3.5 3.5 0 0 1-7 0z"/>',
+  chat:     '<path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/>',
+  help:     '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3"/><path d="M12 17h.01"/>',
+  megaphone:'<path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M14 8a4 4 0 0 1 0 8"/><path d="M17 5a7 7 0 0 1 0 14"/>',
+  reply:    '<path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/>',
 };
 
 function svg(name) {
@@ -37,6 +41,8 @@ function svg(name) {
   return `<svg viewBox="0 0 24 24" aria-hidden="true">${body}</svg>`;
 }
 function icon(name, cls = "ico") { return `<span class="${cls}">${svg(name)}</span>`; }
+/* экспорт для внешних модулей (форум) */
+window.dkSvg = svg;
 
 /* --- Полная структура навигации (1:1 с оригиналом fdkistok.ru) --- */
 const NAV = [
@@ -63,8 +69,9 @@ const NAV = [
       ]},
       { label: "Обратная связь", href: "obratnaya-svyaz.html" },
   ]},
-  { label: "Форум", href: "https://fdkistok.ru/forums/forum/forum/", children: [
-      { label: "Опросы", href: "https://fdkistok.ru/forums/forum/oprosy/" },
+  { label: "Форум", href: "forum.html", children: [
+      { label: "Все разделы", href: "forum.html" },
+      { label: "Обратная связь", href: "forum.html?cat=feedback" },
       { label: "Форум fryazino.net", href: "http://fryazino.net/forum/forum15/topic370/" },
   ]},
   { label: "Платные услуги", href: "platnye-uslugi.html" },
@@ -192,13 +199,14 @@ function renderFooter() {
 }
 
 /* --- Подстановка иконок в статический HTML по data-icon --- */
-function injectIcons() {
-  document.querySelectorAll("[data-icon]").forEach(el => {
+function injectIcons(scope) {
+  (scope || document).querySelectorAll("[data-icon]").forEach(el => {
     const name = el.getAttribute("data-icon");
     if (ICONS[name]) el.innerHTML = svg(name);
     el.classList.add("ico");
   });
 }
+window.dkInjectIcons = injectIcons;
 
 /* --- Появление блоков при скролле --- */
 function initReveal() {
