@@ -306,9 +306,35 @@ function initSlider() {
   play();
 }
 
+/* --- Анимация счётчиков (полоса цифр) --- */
+function initCounters() {
+  const nums = document.querySelectorAll(".stat__num[data-count]");
+  if (!nums.length) return;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finalText = el => (+el.dataset.count) + (el.dataset.suffix || "");
+  if (reduce || !("IntersectionObserver" in window)) { nums.forEach(el => el.textContent = finalText(el)); return; }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      obs.unobserve(e.target);
+      const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || "";
+      const dur = 1100; let start = null;
+      const step = t => {
+        start = start || t;
+        const p = Math.min((t - start) / dur, 1);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + (p === 1 ? suf : "");
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.4 });
+  nums.forEach(n => io.observe(n));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   mountChrome();
   injectIcons();
   initSlider();
   initReveal();
+  initCounters();
 });

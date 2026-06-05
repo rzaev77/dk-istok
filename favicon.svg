@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#14101b"/>
-  <rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="#a5854c" stroke-width="1.5"/>
-  <text x="32" y="41" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#f0d79d" text-anchor="middle">ДК</text>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2033"/><stop offset="1" stop-color="#14101b"/></linearGradient></defs>
+  <rect width="64" height="64" rx="14" fill="url(#g)"/>
+  <rect x="5" y="5" width="54" height="54" rx="11" fill="none" stroke="#a5854c" stroke-width="1.5"/>
+  <rect x="10" y="10" width="44" height="44" rx="8" fill="none" stroke="#ecd0a0" stroke-opacity=".18" stroke-width="1"/>
+  <text x="32" y="41" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#f0d79d" text-anchor="middle">ДК</text>
 </svg>
