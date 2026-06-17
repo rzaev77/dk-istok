@@ -145,8 +145,8 @@ function renderHeader() {
   </div>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark">ДК</span>
+      <a class="brand" href="index.html" aria-label="Дворец культуры «Исток» — на главную">
+        <img class="brand__mark" src="assets/img/mark-cream.png" alt="" width="91" height="40" decoding="async">
         <span class="brand__text">
           <span class="brand__name">«ИСТОК»</span>
           <span class="brand__sub">Дворец культуры · Фрязино</span>
@@ -171,9 +171,10 @@ function renderFooter() {
 
   return `
   <footer class="site-footer">
+    <div class="shards shards--tall" aria-hidden="true"></div>
     <div class="container site-footer__grid">
       <div class="foot-col">
-        <div class="foot-brand">«ИСТОК»</div>
+        <img class="foot-logo" src="assets/img/logo-lockup-cream-tr.png" alt="Дома Культуры Подмосковья · Дворец культуры «Исток»" decoding="async">
         <p>${CONTACTS.address}</p>
         <p>Тел.: <a href="tel:+74962554822">${CONTACTS.phone}</a></p>
         <p>E-mail: <a href="mailto:${CONTACTS.email}">${CONTACTS.email}</a></p>
