@@ -146,7 +146,7 @@ function renderHeader() {
   <header class="site-header">
     <div class="site-header__inner">
       <a class="brand" href="index.html" aria-label="Дворец культуры «Исток» — на главную">
-        <img class="brand__mark" src="assets/img/mark-cream.png" alt="" width="91" height="40" decoding="async">
+        <img class="brand__mark" src="assets/img/mark-bordo.png" alt="" width="96" height="42" decoding="async">
         <span class="brand__text">
           <span class="brand__name">«ИСТОК»</span>
           <span class="brand__sub">Дворец культуры · Фрязино</span>
