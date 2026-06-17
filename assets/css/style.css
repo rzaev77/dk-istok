@@ -104,7 +104,7 @@ body > * { position: relative; z-index: 1; }
 
 /* ---------- Типографика ---------- */
 h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.08; color: var(--white); margin: 0 0 .5em; letter-spacing: normal; }
-h1 { font-size: clamp(2.5rem, 5.2vw, 4.4rem); font-weight: 700; letter-spacing: -.01em; line-height: 1.06; text-wrap: balance; }
+h1 { font-size: clamp(2.5rem, 5.2vw, 4.4rem); font-weight: 700; letter-spacing: -.01em; line-height: 1.1; text-wrap: balance; }
 h2, h3 { text-wrap: balance; }
 h2 { font-size: clamp(2rem, 3.6vw, 3.1rem); letter-spacing: -.005em; }
 h3 { font-size: 1.5rem; }
@@ -139,8 +139,10 @@ strong { color: var(--white); font-weight: 600; }
 .btn .ico { width: 1.1em; height: 1.1em; }
 .btn--gold { background: var(--gold); color: #04211d; box-shadow: 0 10px 30px -12px rgba(var(--gold-rgb),.6); }
 .btn--gold:hover { background: var(--gold-bright); color: #04211d; transform: translateY(-2px); box-shadow: 0 16px 38px -14px rgba(var(--gold-rgb),.7); }
-.btn--ghost { border-color: var(--line-2); color: var(--text); background: transparent; }
+.btn--ghost { border-color: rgba(233,228,225,.42); color: var(--text); background: transparent; }
 .btn--ghost:hover { border-color: var(--gold); color: var(--gold-bright); background: var(--gold-wash); transform: translateY(-2px); }
+.btn .ico { transition: transform .25s var(--ease); }
+.btn:hover .ico:last-child { transform: translateX(3px); }
 .btn--wine { background: transparent; border-color: var(--burgundy-2); color: var(--rose); }
 .btn--wine:hover { background: var(--burgundy-2); color: #fff; border-color: var(--burgundy-2); transform: translateY(-2px); box-shadow: 0 12px 30px -14px rgba(193,61,93,.55); }
 .btn--wine:active { background: var(--burgundy); border-color: var(--burgundy); }
@@ -321,7 +323,7 @@ strong { color: var(--white); font-weight: 600; }
 .card {
   background: var(--bg-3); border: 1px solid var(--line); border-radius: var(--radius);
   overflow: hidden; transition: transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; box-shadow: 0 8px 22px -16px rgba(0,0,0,.55);
 }
 .card:hover { transform: translateY(var(--lift)); box-shadow: var(--shadow-md); border-color: var(--gold-deep); }
 .card__poster { aspect-ratio: 3/4; background-size: cover; background-position: center top; position: relative; }
@@ -488,7 +490,9 @@ strong { color: var(--white); font-weight: 600; }
 .linkbtns a .arr { margin-left: auto; color: var(--text-3); width: 16px; height: 16px; }
 
 /* ---------- Форма ---------- */
-.form { display: grid; gap: 20px; max-width: 640px; }
+.form { display: grid; gap: 20px; max-width: 720px; margin: 0 auto;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 40px); }
 .form label { display: block; font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-2); margin-bottom: 9px; font-weight: 600; }
 .form input, .form textarea {
   width: 100%; background: var(--bg-1); border: 1px solid var(--line-2); color: var(--text);
@@ -685,3 +689,16 @@ strong { color: var(--white); font-weight: 600; }
 @media (hover: none) {
   .quickcard__arr { opacity: 1; transform: none; color: var(--text-3); }
 }
+
+/* осколочная лента: мягкое затухание по краям — премиальнее, не «гирлянда» */
+.shards,
+.section--alt::before,
+.page-hero::after,
+.cta::after,
+.ribbon::before {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+/* телефоны не разрываются */
+a[href^="tel:"] { white-space: nowrap; }
