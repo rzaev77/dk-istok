@@ -146,7 +146,11 @@ function renderHeader() {
   <header class="site-header">
     <div class="site-header__inner">
       <a class="brand" href="index.html" aria-label="Дворец культуры «Исток» — на главную">
-        <img class="brand__logo" src="assets/img/logo-istok-bordo.png" alt="Дворец культуры «Исток»" decoding="async">
+        <img class="brand__mark" src="assets/img/mark-bordo.png" alt="" width="96" height="42" decoding="async">
+        <span class="brand__text">
+          <span class="brand__name">«ИСТОК»</span>
+          <span class="brand__sub">Дворец культуры · Фрязино</span>
+        </span>
       </a>
       <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
         <span></span><span></span><span></span>
