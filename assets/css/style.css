@@ -259,6 +259,11 @@ a[href^="tel:"] { white-space: nowrap; }
 .slide__title { font-size: clamp(2.7rem, 6vw, 5.2rem); margin: 0 0 18px; max-width: 16ch; line-height: 1.06; letter-spacing: -.015em; color: #fff; }
 .slide__meta { color: rgba(255,255,255,.92); font-size: 1.08rem; line-height: 1.5; margin: 0 0 32px; max-width: 42ch; text-wrap: pretty; text-shadow: 0 1px 22px rgba(58,9,26,.4); }
 .slide__btns { display: flex; gap: 14px; flex-wrap: wrap; }
+/* кнопки в hero — на тёмном фото, светлая тема (иначе контурная сливается) */
+.slide__btns .btn--ghost { border-color: rgba(255,255,255,.6); color: #fff; }
+.slide__btns .btn--ghost:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.12); }
+.slide__btns .btn--gold { background: var(--cream); color: var(--bordo); }
+.slide__btns .btn--gold:hover { background: #fff; color: var(--bordo); }
 
 .slider__arrows { position: absolute; z-index: 7; bottom: 58px; right: max(28px, calc((100vw - var(--maxw))/2 + 28px)); display: flex; gap: 12px; }
 .slider__prev, .slider__next {
