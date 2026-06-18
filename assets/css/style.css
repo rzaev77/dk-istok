@@ -156,8 +156,8 @@ a[href^="tel:"] { white-space: nowrap; }
 .section--bordo .btn--wine, .section--emerald .btn--wine, .section--lilac .btn--wine, .cta .btn--wine { background: var(--cream); border-color: var(--cream); color: var(--bordo); }
 .section--bordo .btn--wine:hover, .section--emerald .btn--wine:hover, .section--lilac .btn--wine:hover, .cta .btn--wine:hover { background: #fff; border-color: #fff; color: var(--bordo); }
 /* контурные кнопки на цветных блоках — чёткий светлый контур */
-.section--bordo .btn--ghost, .section--emerald .btn--ghost, .section--lilac .btn--ghost, .cta .btn--ghost { border-color: rgba(255,255,255,.55); color: #fff; }
-.section--bordo .btn--ghost:hover, .section--emerald .btn--ghost:hover, .section--lilac .btn--ghost:hover, .cta .btn--ghost:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.10); }
+.section--bordo .btn--ghost, .section--emerald .btn--ghost, .section--lilac .btn--ghost, .cta .btn--ghost, .site-footer .btn--ghost { border-color: rgba(255,255,255,.55); color: #fff; }
+.section--bordo .btn--ghost:hover, .section--emerald .btn--ghost:hover, .section--lilac .btn--ghost:hover, .cta .btn--ghost:hover, .site-footer .btn--ghost:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.10); }
 
 /* ---------- Топбар ---------- */
 .topbar { background: var(--bordo-deep); color: rgba(244,236,233,.85); font-size: .8rem; }
