@@ -180,6 +180,7 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 .site-header__inner { display: flex; align-items: center; gap: 24px; min-height: 80px; padding: 0 28px; }
 .brand { display: flex; align-items: center; gap: 14px; color: var(--heading); }
+.brand__logo { height: 48px; width: auto; display: block; }
 .brand__mark { width: auto; height: 42px; flex: none; display: block; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.05; }
 .brand__name { font-family: var(--serif); font-size: 1.6rem; font-weight: 800; letter-spacing: .01em; color: var(--bordo); }
@@ -648,6 +649,7 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 @media (max-width: 560px){
   body { font-size: 16px; line-height: 1.55; }
+  .brand__logo { height: 40px; }
   .shards, .hero .shards { height: 13px; }
   .slider__track { height: clamp(460px, 80vh, 620px); }
   .slide__title { font-size: clamp(2.1rem, 8vw, 2.8rem); margin-bottom: 14px; }
