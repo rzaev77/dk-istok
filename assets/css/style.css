@@ -670,6 +670,24 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 @media (hover: none) { .quickcard__arr { opacity: 1; transform: none; } }
 
+/* ---------- Упрочнение вёрстки: ничто не распирает блоки ---------- */
+/* grid/flex-элементы по умолчанию min-width:auto — длинный контент (email, длинное
+   слово, телефон) выдавливает ширину и «съезжает». Сбрасываем в 0 + перенос. */
+.card, .studio, .quickcard, .troupe, .fcat, .topic, .post, .award, .infocard,
+.quickcard__t, .card__body, .studio__top, .topic__main, .troupe > div, .post > div { min-width: 0; }
+.card__title, .card__desc, .card__meta, .studio__name, .studio__desc, .troupe__name, .troupe__lead,
+.troupe__desc, .post__body, .topic__title, .topic__meta, .fcat__name, .fcat__desc, .award h3, .award li,
+.quickcard__t b, .quickcard__t small, .infocard p, .prose p, .specs li span { overflow-wrap: break-word; }
+.studio__row { min-width: 0; }
+.studio__row a { overflow-wrap: anywhere; }
+@media (max-width: 560px){
+  .banners { gap: 16px; }
+  .infogrid { grid-template-columns: 1fr; gap: 14px; }
+  .awards { grid-template-columns: 1fr; gap: 16px; }
+  /* осколочный паттерн на мелких экранах не «дёргает» вёрстку */
+  .ribbon__cap b { max-width: 100%; }
+}
+
 /* ---------- Скроллбар ---------- */
 ::-webkit-scrollbar { width: 12px; height: 12px; }
 ::-webkit-scrollbar-track { background: var(--surface-2); }
