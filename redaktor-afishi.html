@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Редактор афиши — ДК «Исток»</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .ed-wrap { max-width: 1100px; margin: 0 auto; padding: 28px; }
+  .ed-head { background: var(--bordo); color:#fff; border-radius: var(--radius); padding: 28px 30px; margin-bottom: 24px; }
+  .ed-head h1 { color:#fff; font-size: 1.9rem; margin:0 0 8px; }
+  .ed-head p { color: rgba(255,255,255,.9); margin:0; max-width: 70ch; }
+  .ed-steps { background: var(--surface); border:1px solid var(--line); border-left:4px solid var(--bordo); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; font-size:.95rem; }
+  .ed-steps b { color: var(--bordo); }
+  .ed-steps ol { margin:.5em 0 0; padding-left: 1.3em; } .ed-steps li { margin-bottom:.4em; }
+  .ed-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items:start; }
+  @media (max-width: 900px){ .ed-grid { grid-template-columns: 1fr; } }
+  .ed-panel { background: var(--surface); border:1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-sm); }
+  .ed-panel h2 { font-size: 1.2rem; margin:0 0 16px; }
+  .ed-field { margin-bottom: 14px; }
+  .ed-field label { display:block; font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; color: var(--fg-muted); font-weight:700; margin-bottom:6px; }
+  .ed-field input, .ed-field select, .ed-field textarea { width:100%; padding:11px 13px; border:1px solid var(--line-2); border-radius: var(--radius-sm); font:inherit; font-size:.95rem; background: var(--surface-2); color: var(--fg); }
+  .ed-field textarea { min-height: 80px; resize: vertical; }
+  .ed-row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .ed-check { display:flex; align-items:center; gap:10px; font-size:.95rem; }
+  .ed-check input { width:auto; }
+  .ed-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+  .ed-list { display:flex; flex-direction:column; gap:10px; }
+  .ed-item { display:grid; grid-template-columns: 44px 1fr auto; gap:12px; align-items:center; background: var(--surface-2); border:1px solid var(--line); border-radius: var(--radius-sm); padding:10px 12px; }
+  .ed-item img { width:44px; height:58px; object-fit:cover; border-radius:6px; background:#eee; }
+  .ed-item__t { min-width:0; } .ed-item__t b { display:block; font-size:.98rem; color: var(--heading); }
+  .ed-item__t small { color: var(--fg-muted); font-size:.8rem; }
+  .ed-item__btns { display:flex; gap:4px; }
+  .ed-ic { width:34px; height:34px; border:1px solid var(--line-2); background:#fff; border-radius:8px; cursor:pointer; display:grid; place-items:center; font-size:1rem; color:var(--bordo); }
+  .ed-ic:hover { border-color: var(--bordo); background: var(--surface-2); }
+  .ed-ic.del:hover { border-color:#b81e4a; color:#b81e4a; }
+  .ed-bigbtns { display:flex; gap:12px; flex-wrap:wrap; margin: 20px 0 0; }
+  .ed-note { font-size:.82rem; color: var(--fg-faint); margin-top:10px; }
+  .ed-preview .cards { grid-template-columns: 1fr; }
+  .ed-back { display:inline-block; margin-bottom:14px; color: var(--bordo); font-weight:600; }
+  .ed-saved { background:#1d7a5e; color:#fff; padding:10px 16px; border-radius:999px; font-size:.9rem; display:none; }
+</style>
+</head>
+<body>
+<div class="ed-wrap">
+  <a class="ed-back" href="index.html">← На сайт</a>
+
+  <div class="ed-head">
+    <h1>Редактор афиши</h1>
+    <p>Здесь можно добавлять, изменять и удалять события афиши без знания программирования. Заполните форму, проверьте предпросмотр и нажмите «Скачать файл афиши».</p>
+  </div>
+
+  <div class="ed-steps">
+    <b>Как это работает (3 шага):</b>
+    <ol>
+      <li>Добавьте/измените события в форме слева. Справа сразу видно, как они будут выглядеть.</li>
+      <li>Нажмите кнопку <b>«💾 Скачать файл афиши»</b> — скачается файл <b>afisha.js</b>.</li>
+      <li>Загрузите этот файл на сайт в папку <b>assets/data/</b> (заменив старый) — или передайте его тому, кто публикует сайт. Готово!</li>
+    </ol>
+    <div class="ed-note">Постеры (картинки) предварительно положите в папку assets/img и укажите имя файла в поле «Постер». Менять что-либо ещё на сайте не нужно.</div>
+  </div>
+
+  <div class="ed-grid">
+    <!-- ФОРМА -->
+    <div class="ed-panel">
+      <h2 id="form-title">Новое событие</h2>
+      <form id="ed-form">
+        <div class="ed-field"><label>Название события *</label><input name="title" required placeholder="Например: Женский стендап"></div>
+        <div class="ed-row2">
+          <div class="ed-field"><label>Дата и время</label><input name="date" placeholder="10 октября · 19:00"></div>
+          <div class="ed-field"><label>Зал / место</label><input name="place" placeholder="большой зал"></div>
+        </div>
+        <div class="ed-row2">
+          <div class="ed-field"><label>Категория (ярлык)</label><input name="badge" list="badges" placeholder="Концерт">
+            <datalist id="badges"><option>Концерт</option><option>Спектакль</option><option>Фестиваль</option><option>Праздник</option><option>Стендап</option><option>Детям</option><option>Набор</option><option>Выставка</option></datalist>
+          </div>
+          <div class="ed-field"><label>Возраст</label>
+            <select name="age"><option value="0+">0+</option><option value="6+">6+</option><option value="12+">12+</option><option value="16+">16+</option><option value="18+">18+</option><option value="14–18">14–18</option><option value="">— нет —</option></select>
+          </div>
+        </div>
+        <div class="ed-field"><label>Краткое описание</label><textarea name="desc" placeholder="1–2 предложения о событии"></textarea></div>
+        <div class="ed-row2">
+          <div class="ed-field"><label>Постер (имя файла в assets/img)</label><input name="img" list="imgs" placeholder="p5.jpg">
+            <datalist id="imgs"><option>p1.jpg</option><option>p2.jpg</option><option>p3.jpg</option><option>p4.jpg</option><option>p5.jpg</option><option>p6.jpg</option><option>ev_volna.jpg</option><option>ev_donjuan.jpg</option><option>ev_tanzclass.jpg</option></datalist>
+          </div>
+          <div class="ed-field"><label>Цена</label><input name="price" list="prices" placeholder="По билетам">
+            <datalist id="prices"><option>По билетам</option><option>Вход свободный</option><option>Бесплатно</option><option>По записи</option></datalist>
+          </div>
+        </div>
+        <div class="ed-row2">
+          <div class="ed-field"><label>Текст кнопки</label><input name="btnText" placeholder="Билет"></div>
+          <div class="ed-field"><label>Тип кнопки</label>
+            <select name="btnStyle"><option value="wine">Купить билет (малиновая)</option><option value="ghost">Подробнее (контурная)</option></select>
+          </div>
+        </div>
+        <div class="ed-field"><label>Ссылка кнопки</label><input name="btnUrl" placeholder="https://new.biletof.com/ или zvezda.html"></div>
+        <div class="ed-field ed-check"><input type="checkbox" name="cancelled" id="cancelled"><label for="cancelled" style="margin:0;text-transform:none;letter-spacing:0;font-weight:500">Мероприятие отменено</label></div>
+        <div class="ed-actions">
+          <button type="submit" class="btn btn--gold btn--sm">Сохранить событие</button>
+          <button type="button" id="ed-cancel" class="btn btn--ghost btn--sm">Очистить форму</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- СПИСОК + ПРЕДПРОСМОТР -->
+    <div class="ed-panel">
+      <h2>События афиши <span id="ed-count" style="color:var(--fg-faint);font-weight:600"></span></h2>
+      <div class="ed-list" id="ed-list"></div>
+      <div class="ed-bigbtns">
+        <button id="ed-download" class="btn btn--gold">💾 Скачать файл афиши</button>
+        <button id="ed-copy" class="btn btn--ghost btn--sm">Скопировать</button>
+        <button id="ed-reset" class="btn btn--ghost btn--sm">Вернуть исходное</button>
+        <span class="ed-saved" id="ed-saved">Готово!</span>
+      </div>
+      <div class="ed-note">Файл скачается под именем <b>afisha.js</b>. Загрузите его в папку <b>assets/data/</b> на сайте.</div>
+    </div>
+  </div>
+
+  <div class="ed-panel ed-preview" style="margin-top:28px">
+    <h2>Предпросмотр (как увидят посетители)</h2>
+    <div class="cards" id="ed-cards"></div>
+  </div>
+</div>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/data/afisha.js"></script>
+<script src="assets/js/afisha-render.js"></script>
+<script>
+(function(){
+  var ORIG = JSON.parse(JSON.stringify(window.AFISHA||[]));
+  var data = JSON.parse(JSON.stringify(window.AFISHA||[]));
+  var editIndex = -1;
+  var form = document.getElementById("ed-form");
+  var listEl = document.getElementById("ed-list");
+  var cardsEl = document.getElementById("ed-cards");
+  var countEl = document.getElementById("ed-count");
+  var formTitle = document.getElementById("form-title");
+
+  function fd(){ return new FormData(form); }
+  function fill(e){
+    form.title.value=e.title||""; form.date.value=e.date||""; form.place.value=e.place||"";
+    form.badge.value=e.badge||""; form.age.value=e.age||"0+"; form.desc.value=e.desc||"";
+    form.img.value=e.img||""; form.price.value=e.price||""; form.btnText.value=e.btnText||"";
+    form.btnStyle.value=e.btnStyle||"ghost"; form.btnUrl.value=e.btnUrl||""; form.cancelled.checked=!!e.cancelled;
+  }
+  function clearForm(){ form.reset(); editIndex=-1; formTitle.textContent="Новое событие"; }
+
+  function renderList(){
+    countEl.textContent = "("+data.length+")";
+    listEl.innerHTML = data.map(function(e,i){
+      return '<div class="ed-item">'
+        + '<img src="assets/img/'+(e.img||"")+'" alt="" onerror="this.style.visibility=\'hidden\'">'
+        + '<div class="ed-item__t"><b>'+escape(e.title)+(e.cancelled?' · ОТМЕНЕНО':'')+'</b><small>'+escape([e.date,e.place].filter(Boolean).join(" · "))+'</small></div>'
+        + '<div class="ed-item__btns">'
+        + '<button class="ed-ic" title="Вверх" data-up="'+i+'">↑</button>'
+        + '<button class="ed-ic" title="Вниз" data-down="'+i+'">↓</button>'
+        + '<button class="ed-ic" title="Редактировать" data-edit="'+i+'">✏</button>'
+        + '<button class="ed-ic del" title="Удалить" data-del="'+i+'">✕</button>'
+        + '</div></div>';
+    }).join("") || '<p style="color:var(--fg-muted)">Пока нет событий. Добавьте первое в форме слева.</p>';
+    // предпросмотр карточек тем же кодом, что и на сайте
+    if(window.dkAfishaCard){
+      cardsEl.innerHTML = data.map(window.dkAfishaCard).join("");
+      if(window.dkInjectIcons) window.dkInjectIcons(cardsEl);
+    }
+  }
+  function escape(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var d = fd();
+    var item = { title:d.get("title").trim(), date:d.get("date").trim(), place:d.get("place").trim(),
+      badge:d.get("badge").trim(), age:d.get("age"), desc:d.get("desc").trim(), price:d.get("price").trim(),
+      img:d.get("img").trim(), btnText:d.get("btnText").trim()||"Подробнее", btnUrl:d.get("btnUrl").trim(),
+      btnStyle:d.get("btnStyle"), cancelled: form.cancelled.checked };
+    if(editIndex>=0){ data[editIndex]=item; } else { data.push(item); }
+    clearForm(); renderList(); window.scrollTo({top:0,behavior:"smooth"});
+  });
+  document.getElementById("ed-cancel").addEventListener("click", clearForm);
+
+  listEl.addEventListener("click", function(ev){
+    var t=ev.target;
+    if(t.dataset.edit!=null){ editIndex=+t.dataset.edit; fill(data[editIndex]); formTitle.textContent="Редактирование события"; window.scrollTo({top:0,behavior:"smooth"}); }
+    else if(t.dataset.del!=null){ if(confirm("Удалить это событие?")){ data.splice(+t.dataset.del,1); if(editIndex===+t.dataset.del) clearForm(); renderList(); } }
+    else if(t.dataset.up!=null){ var i=+t.dataset.up; if(i>0){ var x=data.splice(i,1)[0]; data.splice(i-1,0,x); renderList(); } }
+    else if(t.dataset.down!=null){ var j=+t.dataset.down; if(j<data.length-1){ var y=data.splice(j,1)[0]; data.splice(j+1,0,y); renderList(); } }
+  });
+
+  function fileText(){
+    var head = "/* Афиша ДК «Исток». Сгенерировано редактором (redaktor-afishi.html).\n"
+      + "   Загрузите этот файл в папку assets/data/ на сайте, заменив старый. */\n";
+    return head + "window.AFISHA = " + JSON.stringify(data, null, 2) + ";\n";
+  }
+  function flash(){ var s=document.getElementById("ed-saved"); s.style.display="inline-block"; setTimeout(function(){s.style.display="none";},2200); }
+
+  document.getElementById("ed-download").addEventListener("click", function(){
+    var blob = new Blob([fileText()], {type:"text/javascript;charset=utf-8"});
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "afisha.js";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href); flash();
+  });
+  document.getElementById("ed-copy").addEventListener("click", function(){
+    var txt=fileText();
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(flash); }
+    else { var ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); flash(); }
+  });
+  document.getElementById("ed-reset").addEventListener("click", function(){
+    if(confirm("Вернуть афишу к исходному виду? Несохранённые изменения пропадут.")){ data=JSON.parse(JSON.stringify(ORIG)); clearForm(); renderList(); }
+  });
+
+  renderList();
+})();
+</script>
+</body>
+</html>
