@@ -44,9 +44,48 @@
   .ed-preview .cards { grid-template-columns: 1fr; }
   .ed-back { display:inline-block; margin-bottom:14px; color: var(--bordo); font-weight:600; }
   .ed-saved { background:#1d7a5e; color:#fff; padding:10px 16px; border-radius:999px; font-size:.9rem; display:none; }
+  /* окно входа (пароль) */
+  .ed-gate { position: fixed; inset: 0; z-index: 9999; background: var(--page); display: grid; place-items: center; padding: 24px; }
+  .ed-gate__box { background: var(--surface); border:1px solid var(--line); border-top:5px solid var(--bordo); border-radius: var(--radius); box-shadow: var(--shadow); padding: 34px 32px; width: min(420px, 100%); text-align: center; }
+  .ed-gate__box h1 { color: var(--bordo); font-size: 1.5rem; margin: 0 0 8px; }
+  .ed-gate__box p { color: var(--fg-muted); margin: 0 0 20px; font-size: .95rem; }
+  .ed-gate__box input { width:100%; padding:13px 15px; border:1px solid var(--line-2); border-radius: var(--radius-sm); font:inherit; font-size:1rem; background: var(--surface-2); color: var(--fg); margin-bottom: 14px; text-align:center; }
+  .ed-gate__box input:focus { outline:none; border-color: var(--bordo); box-shadow: 0 0 0 3px rgba(115,22,55,.12); }
+  .ed-gate__box .btn { width:100%; }
+  .ed-gate__err { color:#b81e4a; font-size:.9rem; margin-top:12px; display:none; }
 </style>
 </head>
 <body>
+<div class="ed-gate" id="ed-gate">
+  <form class="ed-gate__box" id="ed-gate-form">
+    <h1>Редактор афиши</h1>
+    <p>Доступ только для сотрудников. Введите пароль.</p>
+    <input type="password" id="ed-pass" placeholder="Пароль" autocomplete="current-password" autofocus>
+    <button class="btn btn--gold" type="submit">Войти</button>
+    <div class="ed-gate__err" id="ed-gate-err">Неверный пароль. Попробуйте ещё раз.</div>
+  </form>
+</div>
+<script>
+/* ─── ПАРОЛЬ РЕДАКТОРА ─────────────────────────────────────────────
+   Чтобы сменить пароль — замените слово в кавычках ниже и сохраните файл.
+   Это «бытовая» защита от посторонних (менять сайт без доступа к
+   хостингу всё равно нельзя). ───────────────────────────────────── */
+(function(){
+  var PASS = "istok2026";
+  var gate = document.getElementById("ed-gate");
+  if (sessionStorage.getItem("dk_ed_ok") === "1") { gate.style.display = "none"; return; }
+  document.getElementById("ed-gate-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    if (document.getElementById("ed-pass").value === PASS) {
+      sessionStorage.setItem("dk_ed_ok", "1");
+      gate.style.display = "none";
+    } else {
+      document.getElementById("ed-gate-err").style.display = "block";
+      document.getElementById("ed-pass").value = "";
+    }
+  });
+})();
+</script>
 <div class="ed-wrap">
   <a class="ed-back" href="index.html">← На сайт</a>
 
