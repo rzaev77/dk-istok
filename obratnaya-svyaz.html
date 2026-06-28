@@ -30,13 +30,14 @@
   <section class="section">
     <div class="container" data-reveal>
 
-      <form class="form" onsubmit="alert('Спасибо! Форма отправки будет подключена к серверу при публикации сайта.'); return false;">
-        <div><label>Ваше имя (обязательно)</label><input type="text" required></div>
-        <div><label>Ваш e-mail (обязательно)</label><input type="email" required></div>
-        <div><label>Ваш номер телефона</label><input type="tel"></div>
-        <div><label>Тема</label><input type="text"></div>
-        <div><label>Сообщение</label><textarea required></textarea></div>
+      <form class="form" data-feedback data-to="fdkistok@yandex.ru">
+        <div><label>Ваше имя (обязательно)</label><input type="text" name="name" required></div>
+        <div><label>Ваш e-mail (обязательно)</label><input type="email" name="email" required></div>
+        <div><label>Ваш номер телефона</label><input type="tel" name="phone"></div>
+        <div><label>Тема</label><input type="text" name="subject"></div>
+        <div><label>Сообщение</label><textarea name="message" required></textarea></div>
         <div><button type="submit" class="btn btn--gold">Отправить</button></div>
+        <p class="form-sent" style="display:none;color:#1d7a5e;font-weight:600;margin:0">Откроется ваша почтовая программа с готовым письмом — отправьте его, и мы получим сообщение.</p>
       </form>
       <p class="muted" style="margin-top:18px">Либо напишите на e-mail <a href="mailto:fdkistok@yandex.ru">fdkistok@yandex.ru</a> или позвоните: 8 (496) 255-48-22.</p>
     </div>

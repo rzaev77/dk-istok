@@ -340,10 +340,31 @@ function initCounters() {
   nums.forEach(n => io.observe(n));
 }
 
+/* --- Форма обратной связи (без сервера: открывает почту посетителя) --- */
+function initFeedbackForm() {
+  const f = document.querySelector("form[data-feedback]");
+  if (!f) return;
+  const to = f.getAttribute("data-to") || "fdkistok@yandex.ru";
+  const val = n => { const el = f.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ""; };
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    const subj = val("subject") ? "Сайт ДК «Исток»: " + val("subject") : "Сообщение с сайта ДК «Исток»";
+    const body =
+      "Имя: " + val("name") + "\n" +
+      "E-mail: " + val("email") + "\n" +
+      "Телефон: " + val("phone") + "\n\n" +
+      "Сообщение:\n" + val("message");
+    window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
+    const note = f.querySelector(".form-sent");
+    if (note) note.style.display = "block";
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   mountChrome();
   injectIcons();
   initSlider();
   initReveal();
   initCounters();
+  initFeedbackForm();
 });
