@@ -114,6 +114,8 @@
           <div class="ed-field"><label>Дата и время</label><input name="date" placeholder="10 октября · 19:00"></div>
           <div class="ed-field"><label>Зал / место</label><input name="place" placeholder="большой зал"></div>
         </div>
+        <div class="ed-field"><label>Дата для календаря</label><input type="date" name="start" pattern="\d{4}-\d{2}-\d{2}" placeholder="ГГГГ-ММ-ДД">
+          <div class="ed-note" style="margin-top:4px">Нужна для страницы «Календарь». Для разовых событий выберите дату; для сезонных/без точной даты — оставьте пустым. Формат — ГГГГ-ММ-ДД (например 2026-10-10).</div></div>
         <div class="ed-row2">
           <div class="ed-field"><label>Категория (ярлык)</label><input name="badge" list="badges" placeholder="Концерт">
             <datalist id="badges"><option>Концерт</option><option>Спектакль</option><option>Фестиваль</option><option>Праздник</option><option>Стендап</option><option>Детям</option><option>Набор</option><option>Выставка</option></datalist>
@@ -182,7 +184,7 @@
 
   function fd(){ return new FormData(form); }
   function fill(e){
-    form.title.value=e.title||""; form.date.value=e.date||""; form.place.value=e.place||"";
+    form.title.value=e.title||""; form.date.value=e.date||""; form.start.value=e.start||""; form.place.value=e.place||"";
     form.badge.value=e.badge||""; form.age.value=e.age||"0+"; form.desc.value=e.desc||"";
     form.img.value=e.img||""; form.price.value=e.price||""; form.btnText.value=e.btnText||"";
     form.btnStyle.value=e.btnStyle||"ghost"; form.btnUrl.value=e.btnUrl||""; form.cancelled.checked=!!e.cancelled;
@@ -213,7 +215,9 @@
   form.addEventListener("submit", function(ev){
     ev.preventDefault();
     var d = fd();
-    var item = { title:d.get("title").trim(), date:d.get("date").trim(), place:d.get("place").trim(),
+    var startVal = (d.get("start")||"").trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(startVal)) startVal = ""; // только корректный ГГГГ-ММ-ДД (на старых браузерах поле может быть текстовым)
+    var item = { title:d.get("title").trim(), date:d.get("date").trim(), start:startVal, place:d.get("place").trim(),
       badge:d.get("badge").trim(), age:d.get("age"), desc:d.get("desc").trim(), price:d.get("price").trim(),
       img:d.get("img").trim(), btnText:d.get("btnText").trim()||"Подробнее", btnUrl:d.get("btnUrl").trim(),
       btnStyle:d.get("btnStyle"), cancelled: form.cancelled.checked };

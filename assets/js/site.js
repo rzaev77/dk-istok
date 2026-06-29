@@ -48,6 +48,7 @@ window.dkSvg = svg;
 const NAV = [
   { label: "Главная", href: "index.html", children: [
       { label: "Афиша мероприятий", href: "afisha.html" },
+      { label: "Календарь событий", href: "calendar.html" },
       { label: "Выездные и уличные мероприятия", href: "vyezdnye.html" },
   ]},
   { label: "Творческий лагерь «ЗВЕЗДА»", href: "zvezda.html" },

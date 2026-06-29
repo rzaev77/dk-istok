@@ -29,8 +29,9 @@
     const list = Array.isArray(window.AFISHA) ? window.AFISHA : null;
     document.querySelectorAll("[data-afisha]").forEach(c => {
       if (!list) return; // нет данных — оставляем запасную вёрстку как есть
+      const safe = list.filter(e => e && typeof e === "object");
       const lim = parseInt(c.getAttribute("data-limit") || "0", 10);
-      const items = lim > 0 ? list.slice(0, lim) : list;
+      const items = lim > 0 ? safe.slice(0, lim) : safe;
       c.innerHTML = items.length ? items.map(cardHTML).join("") : '<p class="muted">Афиша скоро обновится.</p>';
       if (typeof window.dkInjectIcons === "function") window.dkInjectIcons(c);
     });
