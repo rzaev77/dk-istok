@@ -87,6 +87,7 @@ const TOPLINKS = [
   { label: "Наукоград Фрязино", href: "http://www.fryazino.org/" },
   { label: "Семья Победы", href: "http://www.ote4estvo.ru/semya-pobedy/" },
   { label: "Электронная запись", href: "https://dk.mosreg.ru/dk/istok/workshops" },
+  { label: "Моё Подмосковье", href: "https://dk.mosreg.ru/dk/istok" },
 ];
 
 const CONTACTS = {
