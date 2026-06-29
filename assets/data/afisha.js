@@ -36,7 +36,7 @@ window.AFISHA = [
 
   { title: "Отчётный концерт «Волна эмоций»", date: "", place: "Большой зал", badge: "Концерт", age: "6+",
     desc: "Хореографический ансамбль. Билеты в продаже с 1 июня.",
-    price: "По билетам", img: "ev_volna.jpg", btnText: "Билет", btnUrl: "https://new.biletof.com/", btnStyle: "wine", cancelled: false },
+    price: "По билетам", img: "ev_volna.jpg", btnText: "Билет", btnUrl: "https://biletof.com/events/?places=68", btnStyle: "wine", cancelled: false },
 
   { title: "Многожанровый фестиваль", date: "12 июня", place: "площадь ДК", badge: "Фестиваль", age: "0+",
     desc: "Фестиваль, посвящённый Году единства народов России.",
@@ -44,15 +44,15 @@ window.AFISHA = [
 
   { title: "Женский стендап", date: "10 октября · 19:00", place: "большой зал", badge: "Стендап", age: "18+",
     desc: "Шоу на ТНТ. Продолжительность 1 час 30 минут без антракта.",
-    price: "По билетам", img: "p5.jpg", btnText: "Билет", btnUrl: "https://new.biletof.com/", btnStyle: "wine", cancelled: false },
+    price: "По билетам", img: "p5.jpg", btnText: "Билет", btnUrl: "https://biletof.com/events/?places=68", btnStyle: "wine", cancelled: false },
 
   { title: "Лунтик: С днём рождения!", date: "1 ноября · 12:00", place: "большой зал", badge: "Спектакль", age: "0+",
     desc: "Лицензионный спектакль ростовых кукол. 1 час без антракта.",
-    price: "По билетам", img: "p3.jpg", btnText: "Билет", btnUrl: "https://new.biletof.com/", btnStyle: "wine", cancelled: false },
+    price: "По билетам", img: "p3.jpg", btnText: "Билет", btnUrl: "https://biletof.com/events/?places=68", btnStyle: "wine", cancelled: false },
 
   { title: "Завещание Дон Жуана", date: "7 ноября · 19:00", place: "большой зал", badge: "Спектакль", age: "16+",
     desc: "Исповедь Дон Жуана навсегда меняет жизнь священника. 2 ч 35 мин с антрактом.",
-    price: "По билетам", img: "ev_donjuan.jpg", btnText: "Билет", btnUrl: "https://new.biletof.com/", btnStyle: "wine", cancelled: false },
+    price: "По билетам", img: "ev_donjuan.jpg", btnText: "Билет", btnUrl: "https://biletof.com/events/?places=68", btnStyle: "wine", cancelled: false },
 
   { title: "TANZCLASS", date: "", place: "Большой зал", badge: "Концерт", age: "0+",
     desc: "Концерт современного танца отменён. Возврат билетов — в месте приобретения.",
