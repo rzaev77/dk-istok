@@ -739,3 +739,21 @@ a[href^="tel:"] { white-space: nowrap; }
   .cal-grid { gap: 3px; }
   .cal-title { font-size: 1.05rem; }
 }
+
+/* ---------- Часто задаваемые вопросы (FAQ-аккордеон) ---------- */
+.faq { display: grid; gap: 12px; max-width: 880px; }
+.faq__item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; transition: border-color .15s, box-shadow .15s; }
+.faq__item[open] { border-color: var(--bordo); box-shadow: var(--shadow-sm); }
+.faq__q { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 17px 22px; font-family: var(--serif); font-weight: 700; font-size: 1.06rem; color: var(--heading); }
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::marker { content: ""; }
+.faq__q:hover { color: var(--bordo); }
+.faq__q:focus-visible { outline: 2px solid var(--bordo); outline-offset: -2px; border-radius: var(--radius-sm); }
+.faq__ic { flex: none; width: 22px; height: 22px; color: var(--bordo); display: grid; place-items: center; transition: transform .22s ease; }
+.faq__ic svg { width: 20px; height: 20px; }
+.faq__item[open] .faq__ic { transform: rotate(180deg); }
+.faq__a { padding: 0 22px 18px; color: var(--fg-muted); line-height: 1.62; }
+.faq__a p { margin: 0 0 .6em; } .faq__a p:last-child { margin-bottom: 0; }
+.faq__a a { color: var(--bordo); font-weight: 600; }
+@media (max-width: 560px) { .faq__q { padding: 15px 16px; font-size: 1rem; } .faq__a { padding: 0 16px 16px; } }
