@@ -757,3 +757,10 @@ a[href^="tel:"] { white-space: nowrap; }
 .faq__a p { margin: 0 0 .6em; } .faq__a p:last-child { margin-bottom: 0; }
 .faq__a a { color: var(--bordo); font-weight: 600; }
 @media (max-width: 560px) { .faq__q { padding: 15px 16px; font-size: 1rem; } .faq__a { padding: 0 16px 16px; } }
+
+/* ---------- Госуслуги «Решаем вместе» (виджет ПОС): компактный вид ----------
+   Баннер ПОС (#js-show-iframe-wrapper) резиновый: подстраивается под ширину
+   контейнера (мин. 293px). Ограничиваем ширину — баннер рисуется в компактном
+   виде. Это штатный «узкий» режим виджета, без искажения макета. */
+#js-show-iframe-wrapper { max-width: 320px; }
+@media (max-width: 560px) { #js-show-iframe-wrapper { max-width: 100%; } }
