@@ -4,6 +4,15 @@
    страницу — так ни одна вкладка не теряется. Здесь же набор SVG-иконок.
    ===================================================================== */
 
+/* ---------- Яндекс.Метрика (счётчик 110365917) — считает все страницы сайта --- */
+(function (m, e, t, r, i, k, a) {
+  m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+  m[i].l = 1 * new Date();
+  for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+  k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a);
+})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=110365917", "ym");
+ym(110365917, "init", { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
+
 /* ---------- Набор линейных SVG-иконок (один стиль, обводка currentColor) --- */
 const ICONS = {
   ticket:   '<path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5v1a2 2 0 0 0 0 5v1a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 15.5v-1a2 2 0 0 0 0-5z"/><path d="M14.5 6v12" stroke-dasharray="1.5 2.5"/>',
