@@ -55,40 +55,40 @@ window.dkSvg = svg;
 
 /* --- Полная структура навигации (1:1 с оригиналом fdkistok.ru) --- */
 const NAV = [
-  { label: "Главная", href: "index.html", children: [
-      { label: "Афиша мероприятий", href: "afisha.html" },
-      { label: "Календарь событий", href: "calendar.html" },
-      { label: "Выездные и уличные мероприятия", href: "vyezdnye.html" },
+  { label: "Главная", href: "/", children: [
+      { label: "Афиша мероприятий", href: "afisha" },
+      { label: "Календарь событий", href: "calendar" },
+      { label: "Выездные и уличные мероприятия", href: "vyezdnye" },
   ]},
-  { label: "Творческий лагерь «ЗВЕЗДА»", href: "zvezda.html" },
-  { label: "Наши коллективы", href: "kollektivy.html", children: [
-      { label: "Каталог кружков и студий", href: "kollektivy.html" },
-      { label: "Правила приёма", href: "pravila-priema.html" },
+  { label: "Творческий лагерь «ЗВЕЗДА»", href: "zvezda" },
+  { label: "Наши коллективы", href: "kollektivy", children: [
+      { label: "Каталог кружков и студий", href: "kollektivy" },
+      { label: "Правила приёма", href: "pravila-priema" },
       { label: "Электронная запись", href: "https://dk.mosreg.ru/dk/istok/workshops" },
   ]},
-  { label: "Фоторепортаж", href: "fotoreportazh.html" },
-  { label: "Участие в конкурсах и фестивалях", href: "konkursy.html" },
-  { label: "Большой зал", href: "bolshoj-zal.html" },
-  { label: "Малый зал", href: "malyj-zal.html" },
-  { label: "Контакты", href: "kontakty.html", children: [
-      { label: "О Нас", href: "o-nas.html", children: [
-          { label: "История", href: "istoriya.html" },
-          { label: "Награды", href: "nagrady.html" },
+  { label: "Фоторепортаж", href: "fotoreportazh" },
+  { label: "Участие в конкурсах и фестивалях", href: "konkursy" },
+  { label: "Большой зал", href: "bolshoj-zal" },
+  { label: "Малый зал", href: "malyj-zal" },
+  { label: "Контакты", href: "kontakty", children: [
+      { label: "О Нас", href: "o-nas", children: [
+          { label: "История", href: "istoriya" },
+          { label: "Награды", href: "nagrady" },
           { label: "Пресса о нас", href: "http://ia-fryaz.mosoblonline.ru/" },
-          { label: "Спонсорам", href: "sponsoram.html" },
+          { label: "Спонсорам", href: "sponsoram" },
       ]},
-      { label: "Обратная связь", href: "obratnaya-svyaz.html" },
+      { label: "Обратная связь", href: "obratnaya-svyaz" },
   ]},
-  { label: "Форум", href: "forum.html", children: [
-      { label: "Все разделы", href: "forum.html" },
-      { label: "Обратная связь", href: "forum.html?cat=feedback" },
+  { label: "Форум", href: "forum", children: [
+      { label: "Все разделы", href: "forum" },
+      { label: "Обратная связь", href: "forum?cat=feedback" },
       { label: "Форум fryazino.net", href: "http://fryazino.net/forum/forum15/topic370/" },
   ]},
-  { label: "Платные услуги", href: "platnye-uslugi.html" },
-  { label: "Документы", href: "dokumenty.html", children: [
-      { label: "Документы для зачисления в клубные формирования", href: "dokumenty-zachislenie.html" },
-      { label: "Правила приёма в кружки", href: "pravila-priema.html" },
-      { label: "Противодействие коррупции", href: "korrupcia.html" },
+  { label: "Платные услуги", href: "platnye-uslugi" },
+  { label: "Документы", href: "dokumenty", children: [
+      { label: "Документы для зачисления в клубные формирования", href: "dokumenty-zachislenie" },
+      { label: "Правила приёма в кружки", href: "pravila-priema" },
+      { label: "Противодействие коррупции", href: "korrupcia" },
   ]},
 ];
 
@@ -113,8 +113,8 @@ const CONTACTS = {
 /* --- Утилиты --- */
 const isExternal = (href) => /^https?:\/\//i.test(href);
 const currentPage = () => {
-  const p = location.pathname.split("/").pop();
-  return p === "" ? "index.html" : p;
+  let p = location.pathname.split("/").pop().replace(/\.html$/, "");
+  return (p === "" || p === "index") ? "/" : p;
 };
 
 function markActive(item) {
@@ -156,7 +156,7 @@ function renderHeader() {
   </div>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="brand" href="index.html" aria-label="Дворец культуры «Исток» — на главную">
+      <a class="brand" href="/" aria-label="Дворец культуры «Исток» — на главную">
         <img class="brand__mark" src="assets/img/mark-bordo.png" alt="" width="96" height="42" decoding="async">
         <span class="brand__text">
           <span class="brand__name">«ИСТОК»</span>

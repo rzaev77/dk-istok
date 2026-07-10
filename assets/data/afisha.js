@@ -27,15 +27,15 @@
 window.AFISHA = [
   { title: "Творческий лагерь «Звезда»", date: "1–26 июня · 6–31 июля", start: "2026-06-01", place: "", badge: "Детям", age: "0+",
     desc: "Детский летний творческий лагерь дневного пребывания. Запись открыта.",
-    price: "По записи", img: "p2.jpg", btnText: "О лагере", btnUrl: "zvezda.html", btnStyle: "ghost", cancelled: false },
+    price: "По записи", img: "p2.jpg", btnText: "О лагере", btnUrl: "zvezda", btnStyle: "ghost", cancelled: false },
 
   { title: "Праздник детства", date: "1 июня · 12:00", start: "2026-06-01", place: "площадь ДК", badge: "Праздник", age: "0+",
     desc: "Праздничная программа ко Дню защиты детей.",
-    price: "Вход свободный", img: "p6.jpg", btnText: "Подробнее", btnUrl: "vyezdnye.html", btnStyle: "ghost", cancelled: false },
+    price: "Вход свободный", img: "p6.jpg", btnText: "Подробнее", btnUrl: "vyezdnye", btnStyle: "ghost", cancelled: false },
 
   { title: "Временное трудоустройство подростков", date: "Лето", start: "", place: "ДК «Исток»", badge: "Набор", age: "14–18",
     desc: "Программа летней занятости для подростков от 14 до 18 лет.",
-    price: "Бесплатно", img: "p1.jpg", btnText: "Подробнее", btnUrl: "kontakty.html", btnStyle: "ghost", cancelled: false },
+    price: "Бесплатно", img: "p1.jpg", btnText: "Подробнее", btnUrl: "kontakty", btnStyle: "ghost", cancelled: false },
 
   { title: "Отчётный концерт «Волна эмоций»", date: "", start: "", place: "Большой зал", badge: "Концерт", age: "6+",
     desc: "Хореографический ансамбль. Билеты в продаже с 1 июня.",
@@ -43,7 +43,7 @@ window.AFISHA = [
 
   { title: "Многожанровый фестиваль", date: "12 июня", start: "2026-06-12", place: "площадь ДК", badge: "Фестиваль", age: "0+",
     desc: "Фестиваль, посвящённый Году единства народов России.",
-    price: "Вход свободный", img: "p4.jpg", btnText: "Подробнее", btnUrl: "vyezdnye.html", btnStyle: "ghost", cancelled: false },
+    price: "Вход свободный", img: "p4.jpg", btnText: "Подробнее", btnUrl: "vyezdnye", btnStyle: "ghost", cancelled: false },
 
   { title: "Женский стендап", date: "10 октября · 19:00", start: "2026-10-10", place: "большой зал", badge: "Стендап", age: "18+",
     desc: "Шоу на ТНТ. Продолжительность 1 час 30 минут без антракта.",
@@ -59,5 +59,5 @@ window.AFISHA = [
 
   { title: "TANZCLASS", date: "", start: "", place: "Большой зал", badge: "Концерт", age: "0+",
     desc: "Концерт современного танца отменён. Возврат билетов — в месте приобретения.",
-    price: "", img: "ev_tanzclass.jpg", btnText: "Возврат", btnUrl: "vozvrat-biletov.html", btnStyle: "ghost", cancelled: true },
+    price: "", img: "ev_tanzclass.jpg", btnText: "Возврат", btnUrl: "vozvrat-biletov", btnStyle: "ghost", cancelled: true },
 ];

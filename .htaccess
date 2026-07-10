@@ -1,0 +1,28 @@
+# ============================================================
+#  Красивые ссылки (ЧПУ) для ДК «Исток» — адреса без .html
+#  Файлы остаются xxx.html, но открываются как /xxx.
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Серверную часть форума не трогаем
+  RewriteRule ^api/ - [L]
+
+  # Главная: /index.html -> /  (единый редирект сразу на https)
+  RewriteRule ^index\.html$ https://fdkistok.ru/ [R=301,L]
+
+  # Любой /xxx.html -> /xxx (301, сразу https). Якорь и параметры сохраняются.
+  RewriteCond %{THE_REQUEST} \s/+([^.\s?]+)\.html[\s?] [NC]
+  RewriteRule ^ https://fdkistok.ru/%1 [R=301,L]
+
+  # Убрать хвостовой слэш у виртуальных адресов (реальные папки не трогаем)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+?)/$ https://fdkistok.ru/$1 [R=301,L]
+
+  # /xxx -> xxx.html (внутренне, если такой файл существует)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
