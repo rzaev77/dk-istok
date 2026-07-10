@@ -256,6 +256,11 @@
           <p>8-916-978-62-36<br>8 (496) 255-48-23</p>
           <p class="muted">с 11:00 до 19:00 (перерыв 13:00–14:00). Выходные: вс, пн.</p>
         </div>
+        <a id="js-show-iframe-wrapper" href="#" class="pos-report" role="button" aria-label="Решаем вместе — сообщить о проблеме через Госуслуги">
+          <span class="pos-report__ic" data-icon="shield"></span>
+          <span class="pos-report__t"><b>Решаем вместе</b><small>Сообщить о проблеме или предложении</small></span>
+          <span class="pos-report__arr" data-icon="arrowR"></span>
+        </a>
       </aside>
     </div>
   </section>
@@ -328,7 +333,8 @@
 <script src="assets/data/afisha.js"></script>
 <script src="assets/js/afisha-render.js"></script>
 <script src="assets/js/calendar.js"></script>
-<!-- Госуслуги. Решаем вместе (виджет ПОС) -->
+<!-- Госуслуги. Решаем вместе (виджет ПОС), opaId организации 347192 -->
 <script src="https://pos.gosuslugi.ru/bin/script.min.js"></script>
+<script>Widget("https://pos.gosuslugi.ru/form", 347192)</script>
 </body>
 </html>

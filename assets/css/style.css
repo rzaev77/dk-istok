@@ -758,9 +758,20 @@ a[href^="tel:"] { white-space: nowrap; }
 .faq__a a { color: var(--bordo); font-weight: 600; }
 @media (max-width: 560px) { .faq__q { padding: 15px 16px; font-size: 1rem; } .faq__a { padding: 0 16px 16px; } }
 
-/* ---------- Госуслуги «Решаем вместе» (виджет ПОС): компактный вид ----------
-   Баннер ПОС (#js-show-iframe-wrapper) резиновый: подстраивается под ширину
-   контейнера (мин. 293px). Ограничиваем ширину — баннер рисуется в компактном
-   виде. Это штатный «узкий» режим виджета, без искажения макета. */
-#js-show-iframe-wrapper { max-width: 320px; }
-@media (max-width: 560px) { #js-show-iframe-wrapper { max-width: 100%; } }
+/* ---------- Госуслуги «Решаем вместе» (виджет ПОС) — компактный баннер ----------
+   #js-show-iframe-wrapper — элемент, к которому скрипт ПОС привешивает открытие
+   формы обращения. Оформляем его как небольшую узнаваемую кнопку. */
+#js-show-iframe-wrapper.pos-report { display: flex; align-items: center; gap: 12px; margin-top: 14px;
+  padding: 13px 16px; border-radius: 14px; text-decoration: none; cursor: pointer;
+  background: linear-gradient(135deg, #1f3c88, #2f7ff0); color: #fff; box-shadow: var(--shadow-sm);
+  transition: transform .15s, filter .15s; max-width: 360px; }
+.pos-report:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.pos-report:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.pos-report__ic { flex: none; width: 36px; height: 36px; display: grid; place-items: center;
+  background: rgba(255,255,255,.18); border-radius: 10px; }
+.pos-report__ic svg { width: 20px; height: 20px; color: #fff; }
+.pos-report__t { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.pos-report__t b { font-weight: 700; font-size: .98rem; }
+.pos-report__t small { font-size: .8rem; opacity: .92; }
+.pos-report__arr { margin-left: auto; flex: none; opacity: .85; }
+.pos-report__arr svg { width: 18px; height: 18px; color: #fff; }
